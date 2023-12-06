@@ -12,14 +12,25 @@ public class ColourTable {
             throw new ArithmeticException("Number of colours in the palette must be 2, 4, 8, 16, 32, 64, 128, 256, 512 or 1024");
         }
         else {
-            capacity = paletteCapacity;
-            colours = new ArrayList<>();
+            this.capacity = paletteCapacity;
+            this.colours = new ArrayList<>();
         }
     }
 
     public void add(String colourString) {
         String[] rgb = colourString.split(",");
         Color colour = new Color(Integer.parseInt((rgb[0])), Integer.parseInt((rgb[1])), Integer.parseInt((rgb[2])));
-        colours.add(colour);
+        if (this.capacity == this.colours.size()) {
+            throw new ArithmeticException("Palette is full");
+        }
+        else {
+            this.colours.add(colour);
+        }
+    }
+
+    public void addThreeColours() {
+        add("255,0,0");
+        add("0,255,0");
+        add("0,0,255");
     }
 }

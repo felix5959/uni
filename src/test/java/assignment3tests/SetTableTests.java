@@ -1,10 +1,13 @@
 package assignment3tests;
 
+import org.junit.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.awt.Color;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SetTableTests {
     @ParameterizedTest
@@ -23,6 +26,12 @@ public class SetTableTests {
         String[] values = value.split(",");
         Color expected = new Color(Integer.parseInt((values[0])), Integer.parseInt((values[1])), Integer.parseInt((values[2])));
         assertEquals(expected, table.colours.get(0));
+    }
+    @Test
+    public void tooManyColours() {
+        ColourTable table = new ColourTable(2);
+        ArithmeticException expectedException = assertThrows(ArithmeticException.class, table::addThreeColours);
+        assertEquals("Palette is full", expectedException.getMessage());
     }
 
 }
