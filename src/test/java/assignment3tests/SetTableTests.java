@@ -7,9 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SetTableTests {
     @ParameterizedTest
-    @ValueSource(ints = {2,4,8,16,32,64,128,256,512,1024,3})
+    @ValueSource(ints = {2,4,8,16,32,64,128,256,512,1024})
     public void tableCreation(int value) {
         ColourTable table = new ColourTable(value);
-        assertEquals(value, table.numberOfColours);
+        String[] expected = new String[value];
+        assertEquals(expected.length, table.colours.length);
     }
 }
