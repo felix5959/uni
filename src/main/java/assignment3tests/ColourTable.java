@@ -24,6 +24,13 @@ public class ColourTable {
             throw new ArithmeticException("Palette is full");
         }
         else {
+            if (!colours.isEmpty()) {
+                for (Color i : colours) {
+                    if (i.equals(colour)) {
+                        throw new ArithmeticException("Colour is already in palette");
+                    }
+                }
+            }
             this.colours.add(colour);
         }
     }

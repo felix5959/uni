@@ -34,4 +34,12 @@ public class SetTableTests {
         assertEquals("Palette is full", expectedException.getMessage());
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"255,0,0"})
+    public void addingTheSameColourTwice(String value) {
+        ColourTable table = new ColourTable(4);
+        table.add(value);
+        ArithmeticException expectedException = assertThrows(ArithmeticException.class, () -> table.add(value));
+        assertEquals("Colour is already in palette", expectedException.getMessage());
+    }
 }
